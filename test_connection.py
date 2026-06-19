@@ -1,6 +1,12 @@
+import os
+from dotenv import load_dotenv
 from google.cloud import bigquery
 
-PROJECT_ID = "project-2185fd63-3ec8-490c-8f5"
+load_dotenv()
+PROJECT_ID = os.getenv("GCP_PROJECT_ID")
+
+if not PROJECT_ID:
+    raise ValueError("GCP_PROJECT_ID not set. Check your .env file.")
 
 client = bigquery.Client(project=PROJECT_ID)
 
